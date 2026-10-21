@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { useProgress } from '@react-three/drei';
 import Scene from './Scene';
 import PoemSequence from './PoemSequence';
-import LikeButton from './LikeButton';
 import VisitorCounter from './VisitorCounter';
 
 const MOBILE_QUERY = '(max-width: 720px), (pointer: coarse)';
@@ -143,7 +142,6 @@ function App() {
       {!loadIssue && (
         <div className="site-pulse-counter">
           <VisitorCounter />
-          <LikeButton />
         </div>
       )}
       <StartOverlay isVisible={isLoaded && !hasStarted} onStart={() => setHasStarted(true)} />

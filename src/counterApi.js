@@ -4,7 +4,7 @@ export async function requestCounter(key, readOnly, signal) {
   const response = await fetch(`${API_URL}/${readOnly ? 'get' : 'hit'}/${key}`, {
     cache: 'no-store', credentials: 'omit', signal
   });
-  // New keys are created by their first hit; reading must never add a visit/like.
+  // New keys are created by their first hit; reading must never add a visit.
   if (readOnly && response.status === 404) return 0;
   if (!response.ok) throw new Error('Counter unavailable');
   const { value } = await response.json();

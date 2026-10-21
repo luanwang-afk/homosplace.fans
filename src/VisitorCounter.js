@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { requestCounter } from './counterApi';
 
 const COUNTER_KEY = 'homosplace_visits_71b29c0e';
-const START_COUNT = 150;
 const SESSION_KEY = 'homosplace-visit-count-v2';
 let pendingRequest = null;
 let fallbackCount = null;
@@ -57,10 +56,10 @@ export default function VisitorCounter() {
 
   return (
     <div className="site-visitor-counter" title={failed
-      ? 'Besucherzähler gerade nicht erreichbar.'
-      : 'Ein Besuch pro Sitzung in diesem Browser-Tab'}>
-      <span className="site-pulse-number" aria-live="polite">{count === null ? '–' : (START_COUNT + count).toLocaleString('de-DE')}</span>
-      <span className="site-pulse-label">Besuche</span>
+      ? 'Visitor count currently unavailable.'
+      : 'Visits counted once per browser-tab session.'}>
+      <span className="site-pulse-number" aria-live="polite">{count === null ? '–' : count.toLocaleString('en-US')}</span>
+      <span className="site-pulse-label">Visitors</span>
     </div>
   );
 }

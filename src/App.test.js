@@ -13,7 +13,6 @@ jest.mock('./Scene', () => function MockScene({ onModelReady, onCanvasReady, onE
 jest.mock('./PoemSequence', () => function MockStory({ onAudioReady }) {
   return <button onClick={onAudioReady}>Audio loaded</button>;
 });
-jest.mock('./LikeButton', () => () => null);
 jest.mock('./VisitorCounter', () => () => null);
 
 beforeEach(() => {

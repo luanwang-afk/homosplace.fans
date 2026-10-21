@@ -2,18 +2,6 @@
   text-align: center;
 }
 
-.site-heart-button:disabled { cursor: default; }
-.site-heart-button:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
-.site-like-error {
-  position: absolute;
-  right: 0;
-  bottom: calc(100% + 12px);
-  width: min(240px, 75vw);
-  font-size: 12px;
-  text-align: right;
-}
-
-
         /* Load decorative font (optional) */
         @font-face{
           font-family:'Droplet';
@@ -61,80 +49,28 @@
         }
         .site-pulse-counter{
           position:fixed;
-          right:clamp(16px, 2.3vw, 34px);
-          bottom:clamp(14px, 2.2vw, 30px);
+          right:clamp(18px, 2.3vw, 34px);
+          bottom:clamp(16px, 2.2vw, 30px);
           z-index:62;
-          display:grid;
-          grid-template-columns:auto auto;
-          align-items:end;
-          gap:14px;
-          color:rgba(255,220,212,.82);
-          font-family:'Iowan Old Style', Georgia, serif;
-          opacity:.72;
-          mix-blend-mode:screen;
-          pointer-events:auto;
-          filter:
-            drop-shadow(0 0 10px rgba(255,34,18,.26))
-            drop-shadow(0 0 34px rgba(120,0,0,.22));
+          color:#ff3020;
+          text-shadow:0 0 18px rgba(255,34,18,.35);
         }
-        .site-visitor-counter,
-        .site-heart-button{
+        .site-visitor-counter{
           display:grid;
           justify-items:center;
-          align-content:end;
-          min-width:42px;
+          gap:3px;
         }
         .site-pulse-number{
-          font-size:13px;
+          font-family:'Iowan Old Style', Georgia, serif;
+          font-size:clamp(26px, 2.5vw, 36px);
           line-height:1;
           font-variant-numeric:tabular-nums;
-          color:rgba(255,238,232,.9);
-          text-shadow:
-            0 0 8px rgba(255,236,228,.26),
-            0 0 22px rgba(255,28,14,.34);
+          color:#ffe6df;
         }
         .site-pulse-label{
-          margin-top:4px;
-          font-size:8px;
-          line-height:1;
-          text-transform:uppercase;
-          letter-spacing:.16em;
-          color:rgba(255,178,166,.54);
-        }
-        .site-heart-button{
-          appearance:none;
-          border:0;
-          padding:0;
-          background:transparent;
-          color:rgba(255,54,38,.86);
-          cursor:pointer;
-          transition:
-            transform .22s ease,
-            color .22s ease,
-            filter .22s ease;
-        }
-        .site-heart-button span:first-child{
-          font-size:26px;
-          line-height:.9;
-          text-shadow:
-            0 0 8px rgba(255,238,232,.2),
-            0 0 20px rgba(255,26,12,.56),
-            0 0 58px rgba(150,0,0,.34);
-        }
-        .site-heart-button:hover{
-          transform:translateY(-1px) scale(1.08);
-          color:#ff2116;
-          filter:brightness(1.08);
-        }
-        .site-heart-button.is-liked{
-          color:#ff2116;
-          animation:siteHeartPulse 1.8s ease-in-out infinite;
-        }
-        .site-heart-button.is-liked span:first-child{
-          text-shadow:
-            0 0 10px rgba(255,238,232,.38),
-            0 0 32px rgba(255,24,8,.82),
-            0 0 88px rgba(185,0,0,.46);
+          font-family:'Pinyon Script', Georgia, serif;
+          font-size:clamp(30px, 3vw, 40px);
+          line-height:1.1;
         }
         .start-card{
           position:relative;
@@ -1329,29 +1265,7 @@
         @keyframes startRingSpin{
           to{ transform:rotate(360deg); }
         }
-        @keyframes siteHeartPulse{
-          0%, 100%{ transform:scale(1); }
-          50%{ transform:scale(1.1); }
-        }
         @media (max-width:720px){
-          .site-pulse-counter{
-            right:14px;
-            bottom:12px;
-            gap:10px;
-            opacity:.78;
-          }
-            .site-heart-button{
-            min-width:34px;
-          }
-          .site-heart-button span:first-child{
-            font-size:23px;
-          }
-          .site-pulse-number{
-            font-size:12px;
-          }
-          .site-pulse-label{
-            font-size:7px;
-          }
           .start-card{
             width:clamp(260px, 84vw, 390px);
             transform:translateY(-1vh);
