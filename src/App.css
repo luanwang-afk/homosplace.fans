@@ -78,7 +78,7 @@
           display:grid;
           place-items:center;
           transform:translateY(-2vh);
-          width:clamp(280px, 34vw, 500px);
+          width:min(640px, 86vw, 78svh);
           aspect-ratio:1;
         }
         .start-ring{
@@ -91,11 +91,11 @@
             drop-shadow(0 0 9px rgba(255,238,232,.22))
             drop-shadow(0 0 28px rgba(255,22,8,.46))
             drop-shadow(0 0 68px rgba(145,0,0,.3));
-          animation:startRingSpin 18s linear infinite;
+          animation:startRingSpin 30s linear infinite;
         }
         .start-ring text{
           font-family:'Pinyon Script', 'Iowan Old Style', serif;
-          font-size:52px;
+          font-size:60px;
           font-style:italic;
           color:#ff2116;
           -webkit-text-fill-color:#ff2116;
@@ -106,32 +106,47 @@
           pointer-events:auto;
           position:relative;
           z-index:2;
-          width:clamp(76px, 8vw, 112px);
+          display:grid;
+          place-items:center;
+          width:clamp(96px, 12vw, 148px);
           aspect-ratio:1;
-          border:0;
+          padding:0;
+          border:1px solid rgba(255,161,130,.48);
           border-radius:50%;
-          background:transparent;
-          color:#ff2116;
+          background:
+            radial-gradient(circle at 33% 22%, rgba(255,188,151,.18), transparent 48%),
+            radial-gradient(circle at 50% 90%, rgba(255,39,15,.32), rgba(38,3,1,.65) 72%);
+          color:#ff3020;
           cursor:pointer;
-          box-shadow:none;
-          transition:
-            transform .25s ease,
-            filter .25s ease;
+          box-shadow:inset 0 1px 10px rgba(255,180,140,.14), 0 0 36px rgba(255,39,15,.18);
+          transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+        }
+        .start-play-button::before{
+          content:'';
+          position:absolute;
+          inset:-18%;
+          border-radius:50%;
+          background:radial-gradient(circle, rgba(255,45,16,.18), transparent 70%);
+          pointer-events:none;
+          animation:playHalo 3.6s ease-in-out infinite;
         }
         .start-play-button:hover{
-          transform:scale(1.08);
-          filter:brightness(1.12);
+          transform:scale(1.06);
+          border-color:rgba(255,205,178,.8);
+          box-shadow:inset 0 1px 18px rgba(255,180,140,.22), 0 0 60px rgba(255,39,15,.3);
         }
+        .start-play-button:active{ transform:scale(.96); }
+        .start-play-button:focus-visible{ outline:2px solid #ffe0cf; outline-offset:8px; }
         .start-play-icon{
-          position:absolute;
-          inset:0;
-          width:100%;
-          height:100%;
-          fill:currentColor;
-          filter:
-            drop-shadow(0 0 12px rgba(255,238,230,.46))
-            drop-shadow(0 0 36px rgba(255,0,0,.72))
-            drop-shadow(0 0 92px rgba(170,0,0,.42));
+          position:relative;
+          width:55%;
+          height:55%;
+          transform:translateX(2%);
+          filter:drop-shadow(0 0 8px rgba(255,119,80,.5));
+        }
+        @keyframes playHalo{
+          0%, 100%{ opacity:.45; transform:scale(.9); }
+          50%{ opacity:1; transform:scale(1.15); }
         }
         .story-inline-player{
           opacity:0;
@@ -1267,14 +1282,11 @@
         }
         @media (max-width:720px){
           .start-card{
-            width:clamp(260px, 84vw, 390px);
+            width:min(520px, 88vw, 76svh);
             transform:translateY(-1vh);
           }
-          .start-ring text{
-            font-size:48px;
-          }
           .start-play-button{
-            width:clamp(72px, 22vw, 98px);
+            width:clamp(96px, 27vw, 128px);
           }
           .poem-stage{ padding:16px; }
           .story-copy{
@@ -1358,6 +1370,9 @@
           }
         }
         @media (prefers-reduced-motion: reduce){
+          .start-ring, .start-play-button::before{ animation:none; }
+          .start-overlay, .start-play-button{ transition:none; }
+
           .poem-flow{ animation:none; }
           .story-transcript{
             animation:none;

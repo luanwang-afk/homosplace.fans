@@ -71,7 +71,14 @@ function StartOverlay({ isVisible, onStart }) {
         </svg>
         <button className="start-play-button" type="button" onClick={onStart} aria-label="Start story">
           <svg className="start-play-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-            <path d="M16 14 Q16 8 22 11 L50 27 Q58 32 50 37 L22 53 Q16 56 16 50 Z" />
+            <defs>
+              <linearGradient id="play-light" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stopColor="#fff0e7" />
+                <stop offset=".45" stopColor="#ff9a82" />
+                <stop offset="1" stopColor="#ff3020" />
+              </linearGradient>
+            </defs>
+            <path fill="url(#play-light)" d="M19 15 C19 10 23 8 27 11 L50 26 C55 29 55 35 50 38 L27 53 C23 56 19 54 19 49 Z" />
           </svg>
         </button>
       </div>
