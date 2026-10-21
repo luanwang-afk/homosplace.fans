@@ -56,12 +56,12 @@ test('does not clear a lost WebGL context just because assets are ready', () => 
 
 test('shows controls after loading and a temporary headphone hint after play', () => {
   render(<App />);
-  expect(screen.queryByText('Drag to rotate')).not.toBeInTheDocument();
+  expect(screen.queryByRole('img', { name: 'Drag to rotate' })).not.toBeInTheDocument();
   finishLoading();
-  expect(screen.getByText('Drag to rotate')).toBeInTheDocument();
+  expect(screen.getByRole('img', { name: 'Drag to rotate' })).toBeInTheDocument();
   fireEvent.click(screen.getByRole('button', { name: 'Start story' }));
-  expect(screen.queryByText('Drag to rotate')).not.toBeInTheDocument();
-  expect(screen.getByText('Headphones recommended')).toBeInTheDocument();
+  expect(screen.queryByRole('img', { name: 'Drag to rotate' })).not.toBeInTheDocument();
+  expect(screen.getByRole('img', { name: 'Headphones recommended' })).toBeInTheDocument();
   act(() => jest.advanceTimersByTime(6000));
-  expect(screen.queryByText('Headphones recommended')).not.toBeInTheDocument();
+  expect(screen.queryByRole('img', { name: 'Headphones recommended' })).not.toBeInTheDocument();
 });
