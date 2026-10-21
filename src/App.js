@@ -98,10 +98,6 @@ function App() {
   );
 
   useEffect(() => {
-    document.title = 'Homos Place';
-  }, []);
-
-  useEffect(() => {
     if (typeof document === 'undefined') return undefined;
     if (isLoaded) return undefined;
     const canvas = document.createElement('canvas');
