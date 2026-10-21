@@ -1,0 +1,17 @@
+/node_modules/
+/build/
+/coverage/
+/archive/
+/models/
+.env
+.env.*
+!.env.example
+.DS_Store
+._*
+*.log
+*.pem
+*.key
+*.p12
+*.pfx
+/.*/
+!/.github/
