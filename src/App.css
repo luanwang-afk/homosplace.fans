@@ -1402,8 +1402,8 @@
   animation:experienceHintFade 6s both;
 }
 .experience-hint svg{
-  width:28px;
-  height:28px;
+  width:44px;
+  height:44px;
   fill:none;
   stroke:currentColor;
   stroke-width:1;

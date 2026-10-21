@@ -129,6 +129,8 @@ function App() {
       <div className="color-field-layer" aria-hidden="true" />
       {/* Camera adjusted for closer oblique view */}
       <Scene
+        introReady={isLoaded}
+        hasStarted={hasStarted}
         isMobilePerformance={isMobilePerformance}
         onModelReady={handleModelReady}
         onCanvasReady={handleCanvasReady}

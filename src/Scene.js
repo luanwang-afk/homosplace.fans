@@ -358,7 +358,21 @@ function CameraGlintLight({ isMobilePerformance = false }) {
   );
 }
 
-function ResponsiveCameraControls() {
+function ResponsiveCameraControls({ introReady, hasStarted }) {
+  const controlsRef = React.useRef(null);
+  const introElapsed = React.useRef(0);
+  const [reducedMotion] = React.useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  useFrame((_, delta) => {
+    const controls = controlsRef.current;
+    if (!controls) return;
+    if (hasStarted || reducedMotion) introElapsed.current = 5;
+    if (introReady) introElapsed.current = Math.min(5, introElapsed.current + Math.min(delta, 0.1));
+    // Wait for the loading overlay, then demonstrate one gentle arc and settle.
+    const phase = THREE.MathUtils.clamp((introElapsed.current - 0.8) / 4, 0, 1);
+    controls.autoRotateSpeed = -0.2 - 3 * Math.sin(Math.PI * phase);
+  }, -2);
+
   const { camera, size } = useThree();
   const aspect = size.width / Math.max(size.height, 1);
 
@@ -372,6 +386,8 @@ function ResponsiveCameraControls() {
 
   return (
     <OrbitControls
+      ref={controlsRef}
+      onStart={() => { introElapsed.current = 5; }}
       enableDamping
       dampingFactor={0.08}
       // Orbit around the figure on every screen size.
@@ -455,7 +471,7 @@ function CanvasReadySignal({ onReady }) {
 }
 
 
-export default function Scene({ isMobilePerformance, onModelReady, onCanvasReady, onError }) {
+export default function Scene({ isMobilePerformance, onModelReady, onCanvasReady, onError, introReady, hasStarted }) {
   return (
       <Canvas
         dpr={isMobilePerformance ? [0.75, 1] : [1, 1.6]}
@@ -485,7 +501,7 @@ export default function Scene({ isMobilePerformance, onModelReady, onCanvasReady
         <directionalLight position={[-6, 3, -2]} intensity={0.05} color="#ff5b4a" />
         <hemisphereLight skyColor="#2a0808" groundColor="#110000" intensity={0.145} />
         <CameraGlintLight isMobilePerformance={isMobilePerformance} />
-        <ResponsiveCameraControls />
+        <ResponsiveCameraControls introReady={introReady} hasStarted={hasStarted} />
       </Canvas>
   );
 }
