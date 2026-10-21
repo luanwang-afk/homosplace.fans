@@ -5,6 +5,7 @@ import { useProgress } from '@react-three/drei';
 import Scene from './Scene';
 import PoemSequence from './PoemSequence';
 import VisitorCounter from './VisitorCounter';
+import ExperienceHint from './ExperienceHint';
 
 const MOBILE_QUERY = '(max-width: 720px), (pointer: coarse)';
 function useIsMobilePerformance() {
@@ -145,6 +146,7 @@ function App() {
         </div>
       )}
       <StartOverlay isVisible={isLoaded && !hasStarted} onStart={() => setHasStarted(true)} />
+      {isLoaded && !loadIssue && <ExperienceHint key={hasStarted ? 'headphones' : 'controls'} headphones={hasStarted} />}
       <LoadingOverlay isReady={isLoaded} progress={visualProgress} loadIssue={loadIssue} />
     </div>
   );

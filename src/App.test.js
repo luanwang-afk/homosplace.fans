@@ -53,3 +53,15 @@ test('does not clear a lost WebGL context just because assets are ready', () => 
   expect(screen.getByText('Homos Place is too steamy for this device.')).toBeInTheDocument();
   expect(screen.queryByRole('button', { name: 'Start story' })).not.toBeInTheDocument();
 });
+
+test('shows controls after loading and a temporary headphone hint after play', () => {
+  render(<App />);
+  expect(screen.queryByText('Drag to rotate')).not.toBeInTheDocument();
+  finishLoading();
+  expect(screen.getByText('Drag to rotate')).toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: 'Start story' }));
+  expect(screen.queryByText('Drag to rotate')).not.toBeInTheDocument();
+  expect(screen.getByText('Headphones recommended')).toBeInTheDocument();
+  act(() => jest.advanceTimersByTime(6000));
+  expect(screen.queryByText('Headphones recommended')).not.toBeInTheDocument();
+});
