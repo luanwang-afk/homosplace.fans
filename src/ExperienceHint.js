@@ -17,16 +17,10 @@ export default function ExperienceHint({ headphones }) {
           <path d="M6 18v-3a10 10 0 0 1 20 0v3M6 17H5v9h5v-9H6Zm20 0h1v9h-5v-9h4Z" />
         </svg>
       ) : (
-        <>
-          <svg viewBox="0 0 32 32" role="img" aria-label="Drag to rotate">
-            <path d="M7 11a10 10 0 0 1 18-1M25 5v5h-5M25 21a10 10 0 0 1-18 1M7 27v-5h5" />
-            <circle cx="16" cy="16" r="1" />
-          </svg>
-          <svg viewBox="0 0 32 32" role="img" aria-label="Scroll or pinch to zoom">
-            <path d="M12 20 5 27M5 21v6h6M20 12l7-7M21 5h6v6" />
-            <circle cx="16" cy="16" r="1" />
-          </svg>
-        </>
+        <svg className="experience-orbit" viewBox="0 0 48 48" role="img" aria-label="Drag to rotate">
+          <path d="m24 7 9 5v11l-9 5-9-5V12Z M15 12l9 5 9-5 M24 17v11" />
+          <path d="M37 20c7 3 9 7 5 11-7 7-29 7-36 0-5-5-1-9 5-12 M6 18l5 1-2 5" />
+        </svg>
       )}
     </div>
   );
