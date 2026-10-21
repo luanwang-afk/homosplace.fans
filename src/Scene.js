@@ -361,7 +361,6 @@ function CameraGlintLight({ isMobilePerformance = false }) {
 function ResponsiveCameraControls() {
   const { camera, size } = useThree();
   const aspect = size.width / Math.max(size.height, 1);
-  const isPortrait = aspect < 1;
 
   React.useLayoutEffect(() => {
     // Keep at least a 40-degree horizontal view on narrow screens.
@@ -375,8 +374,8 @@ function ResponsiveCameraControls() {
     <OrbitControls
       enableDamping
       dampingFactor={0.08}
-      // The figure is off-centre in the rotated model; focus on it in portrait.
-      target={isPortrait ? [45, 2, 10] : [0, 3, 0]}
+      // Orbit around the figure on every screen size.
+      target={[45, 2, 10]}
       enableZoom
       minDistance={12}
       maxDistance={220}
