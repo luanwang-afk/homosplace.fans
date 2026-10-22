@@ -64,7 +64,7 @@ function StartOverlay({ isVisible, onStart }) {
             />
           </defs>
           <text>
-            <textPath href="#start-text-circle" startOffset="2%" textLength="676" lengthAdjust="spacingAndGlyphs">
+            <textPath href="#start-text-circle" startOffset="3%" textLength="610" lengthAdjust="spacingAndGlyphs">
               Undressing authority. A steam room story.
             </textPath>
           </text>
