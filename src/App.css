@@ -1276,7 +1276,8 @@
             transform:translateY(-1vh);
           }
           .start-play-button{
-            width:clamp(96px, 27vw, 128px);
+            width:min(27vw, 18svh, 128px);
+            min-width:82px;
           }
           .poem-stage{ padding:16px; }
           .story-copy{
